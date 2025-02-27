@@ -17,18 +17,18 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.66.9",
-    "@vanilla-extract/css": "^1.17.1",
     "axios": "^1.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "reset-css": "^5.0.2"
+    "reset-css": "^5.0.2",
+    "@telegram-apps/sdk-react": "^2.0.20",
+    "@telegram-apps/telegram-ui": "^2.1.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "@vanilla-extract/vite-plugin": "^5.0.1",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.2",

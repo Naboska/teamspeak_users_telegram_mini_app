@@ -23,7 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-.env
 
 # Project exclude paths
 /vite.config.d.ts
