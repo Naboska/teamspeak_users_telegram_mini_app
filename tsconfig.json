@@ -22,6 +22,9 @@
     /* Linting */
     "strict": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": [
+    "src",
+    "node_modules/@types/node/globals.d.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

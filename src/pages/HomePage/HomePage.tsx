@@ -1,15 +1,18 @@
 import { List, Placeholder, Spinner } from '@telegram-apps/telegram-ui';
 import { useMemo } from 'react';
+import useInterval from 'react-use/esm/useInterval';
 
-import { useOnlineUsersQuery } from '@/services/api/use-online-users-query';
+import { useServerInfo } from '@/services/api/use-server-info';
 import { DisplayData } from '@/components/DisplayData';
 
 export const HomePage = () => {
-  const { users, isLoading } = useOnlineUsersQuery();
+  const { channels, isLoading, refetch } = useServerInfo();
 
-  const userRows = useMemo(() => {
-    return users.map(user => ({ value: user.name }));
-  }, [users]);
+  useInterval(refetch, 60000);
+
+  const usersCount = useMemo(() => {
+    return channels.reduce((acc, channel) => acc + channel.users.length, 0);
+  }, [channels]);
 
   if (isLoading) {
     return (
@@ -19,7 +22,7 @@ export const HomePage = () => {
     );
   }
 
-  if (!users.length) {
+  if (!usersCount) {
     return (
       <Placeholder description="Нет пользователей">
         <img
@@ -33,7 +36,11 @@ export const HomePage = () => {
 
   return (
     <List>
-      <DisplayData rows={userRows} />
+      {channels.map((channel, index) => {
+        if (!channel.users.length) return null;
+
+        return <DisplayData key={index} header={channel.title} users={channel.users} />;
+      })}
     </List>
   );
 };
