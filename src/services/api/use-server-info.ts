@@ -30,9 +30,14 @@ const getServerInfo = async (): Promise<string> =>
 
     const check = () => {
       if (window.TSV.ViewerScript.Data[SERVER_ID]) {
-        resolve(window.TSV.ViewerScript.Data[SERVER_ID].html);
+        document.body.removeChild(script);
+        return resolve(window.TSV.ViewerScript.Data[SERVER_ID].html);
       } else {
-        if (!checkCount) return reject();
+        if (!checkCount) {
+          document.body.removeChild(script);
+          return reject();
+        }
+
         setTimeout(check, 500);
         checkCount--;
       }
